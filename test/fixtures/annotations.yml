@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  priority: 1
+  prefer_user: MyString
+  text_file: MyString
+  image_files: MyString
+  user_id: 1
+  finished: 2014-06-30 20:32:51
+  skipped: false
+  appropriate: MyString
+  not_appropriate: MyString
+
+two:
+  label: MyString
+  priority: 1
+  prefer_user: MyString
+  text_file: MyString
+  image_files: MyString
+  user_id: 1
+  finished: 2014-06-30 20:32:51
+  skipped: false
+  appropriate: MyString
+  not_appropriate: MyString

@@ -1,0 +1,185 @@
+Anotacni/evaluacni rozhrani pro CEMI Art Dealer
+================================================
+
+
+
+
+User Interface
+--------------
+
+- v leve tretine az polovine rozhrani (podle toho, co pujde cist rychleji - asi spis uzsi nez sirsi?) text clanku
+   
+- zbytek obrazovky budou vyskladane obrazky, v nejake standardizovane velikosti zhruba odpovidajici velikosti ilustracnich fotek (300x200, radove? To vis asi lip nez ja.)
+
+Clanek + sada obrazku predstavuje jednu anotacni polozku.
+   
+- v hornim prouzku:
+  - Strucne anotacni instrukce (text dodam zahy) - nejakym dobre citelnym pismem a dost velke. Budou toho dve tri vety.
+  - Napoveda klavesovych zkratek (viz nize, sekce User actions)
+  - Vpravo nahore moznost LOGOUT, ktera ho vezme zpatky na login page (viz nize)
+   
+- (nepovinne) mysitkove ovladani: nekde kdekoliv na strance (to uz je jedno, jenom aby to bylo poradne videt) jeste tlacitka Commit a Skip. Radsi s ceskymi popisky, teda: "Odeslat" a "Preskocit".
+
+(Nejaky takovy navrh anotacniho rozhrani je v obrazku Safire-annotation-UI.png - ramecky jsou samozrejme vsecky jenom orientacni. Nicmene jestli mas lepsi napad, jak to zorganizovat, tak sem s nim - nic o navrhovani graficke podoby UI doopravdy nevim...)
+
+Krome tohohle hlavniho rozhrani je jeste potreba:
+
+- stranka s podrobnymi anotacnimi instrukcemi; na konci stranky "rekapitulace"
+  v podobe seznamu instrukci v bodech.
+
+- login screen (na budou ty instrukce v bodech taky, pod prihlasovacim dialogem). Na strance s loginem muze treba byt i nejaky obrazek (casem dodam, prudce nepovinne :) ).
+
+
+User actions
+-------------
+
+- left-click na obrazek: oznaci se jako vhodny (tmave zeleny ramecek)
+   
+- right-click na obrazek: oznaci se jako nevhodny (tmave cerveny ramecek)
+
+- left-click na obrazek uz oznaceny jako vhodny (analogicky right-click na nevhodny): oznaceni se odstrani
+
+- left-click na obrazek uz oznaceny jako NEvhodny (analogicky right-click na vhodny): hodnoceni se "preklopi", tzn. bude platit nove.
+   
+- enter: "commit" naklikane anotace, zobrazi se novy clanek
+
+- page down: nasledujici clanek, anotace se necommituje
+
+- (nepovinne) v pripade dlouheho clanku by mohlo jit v tom sloupci, co zobrazuje text, scrollovat dolu, aniz by se zaroven obrazky hybaly - ale to opravdu neni nutne, vhodne a nevhodne obrazky jsou snad stejne poznat z titulku a prvniho odstavce.
+
+!!!! DULEZITE: uzivatel by nemel mit moznost menit polozku, kterou prave anotuje, pomoci refreshe!!!
+
+- LOGIN/LOGOUT: aby se mohlo zacit anotovat, uzivatel se musi nalogovat (pro zacatek klidne muze byt mozne anotovat anonymne, ale budeme potrebovat nejake statistiky o uzivatelske spolehlivosti - a taky budeme anotatorum treba chtit neco zaplatit, a na to o nich musime vedet)
+
+Jak o tom tak premyslim: Mozna by nam vlastne pro nalogovani stacilo zadat e-mail... Nepotrebovali bychom ani zadny seznam uzivatelu, proste kazdy commit by se zapsal do vystupu s e-mailem pouzitym pro login (to se da drzet v nejake session cookie, ne?). A kdo by zadal neplatny e-mail, nedostal by zaplaceno :) Kazdopadne od nich stejne budeme e-mail chtit, kvuli komunikaci o dohodach. 
+
+
+
+
+Back-end: Vstupy
+----------------
+
+Napred bude zadana cesta do nejakeho DATA_ROOT adresare obsahujiciho data (nekde na UFALim filesystemu, nebo asi kdekoliv jinde - tech dat neni tolik, aby se to nedalo prekopirovat).
+
+Pak dostanes soubor (textak, CSV), kde budou ctyri sloupecky oddelene tabulatory:
+
+INDEX    LABEL    PRIORITY    PREFER_USER     TEXT_FILE         IMAGE_FILES
+
+Kazdy radek je jeden data point k anotaci.
+
+- INDEX je unikatni identifikace jednoho annotation case a zaroven "pocitadlo", o kolikatou polozku se jedna
+
+- LABEL je nejaky interni label pokusu, ze ktereho pochazi seznam obrazku k dotycnemu textu
+
+- PRIORITY je cislo (integer), ktere rika, jak dulezite je, aby tahle polozka byla onanotovana co nejdriv. Tohle je tu proto, ze jak budu prubezne trenovat ruzne veci, budu potrebovat mit nektere vysledky driv. Cim VYSSI cislo, tim VYSSI priorita.
+
+- PREFER_USER je bud pomlcka (-), nebo uzivatelske jmeno. Proc tady ten sloupecek je je vysvetlene v casti Zpusob davkovani uzivatelum (nize).
+
+- TEXT_FILE je cesta k textovemu souboru relativni k DATA_ROOT. Textove soubory jsou zabalene gzipem.
+
+- IMAGE_FILES je seznam cest k obrazkum relativni k DATA_ROOT. Jednotlive cesty
+jsou oddelene strednikem (;). Obrazku bude v jedne polozce cca 10 - 20. (Texty
+ i obrazky se muzou libovolne opakovat - samozrejme obrazky se v jedne polozce
+neduplikuji...)
+
+
+Priklad vstupu (dve polozky):
+
+
+0    SDA-1000.NADV   130   -   text/idn/idn-00394.txt.gz     img/0038443910.jpg;img/0007940033.jpg
+1    SDA-1000.NADV   130   -   text/nov/nov-02681.txt.gz     img/0038443910.jpg;img/0000055033.jpg
+2    RSM-2000-400.NAV   250   hajicj   text/idn/idn-00394.txt.gz     img/0038443910.jpg;img/0007940033.jpg
+3    random   0   cinkova   text/ref/ref-00021.txt.gz     img/0038443910.jpg;img/0007940033.jpg
+
+
+Kdyz bude:
+
+DATA_ROOT=/net/me/merkur2/CEMI/safire-annotations
+
+tak prislusne soubory pro anotacni polozky najdes v
+
+/net/me/merkur2/CEMI/safire-annotations/text/idn/idn-00394.txt.gz
+/net/me/merkur2/CEMI/safire-annotations/img/0038443910.jpg
+
+atd.
+
+Tenhle textak, ktery definuje, co se ma ukazovat spolu, bude lezet v: 
+
+$DATA_ROOT/annotation_inputs.csv
+
+Stav tohohle souboru vzdycky reprezentuje aktualni stav polozek k anotaci.
+
+Nevadi, kdyz se bude vstupni soubor preparsovavat ne uplne real-time :) staci treba kazdych par minut. Back-endovy manazer se bude starat o to, aby polozky, ktere se objevily ve vystupu, ze vstupni fronty mizely.
+
+Logiku vstupu, tzn. to, co se ma anotovat, nejak budu zarizovat ja (napisu nejaky AnnotationDispatcher, ktery bude tenhle seznam nejak upravovat).
+
+(Ja ty vstupy zrejme budu krmit dost davkove, tzn. dost novych radek naraz, na druhou stranu anotatori budou - snad - pracovat tak nejak prubezne. Tak uplne nevim, jaka je nejlepsi taktika, co se zapisu a cteni odsud tyce... Naivne si predstavuju, ze na serveru pobezi nejaky davkovac, ktery bude prubezne nacitat nove polozky do nejake sve fronty, a ktery bude na druhem konci z tehle fronty postupne odesilat anotacni polozky anotatorum.) 
+
+Vstupni soubor nebude mit prilis velke mnozstvi radek - v jednotkach tisic, maximalne. Az tolik anotatoru asi nebude...
+
+
+Vystupy
+--------
+
+Oanotovane polozky zapisovat zase prosim do textaku, tabulatorem oddelene
+sloupecky:
+
+INDEX   USER    TIME    SKIPPED    APPROPRIATE     NOT_APPROPRIATE
+             
+kde:
+
+- INDEX je puvodni identifikace polozky, jak byla na vstupu, 
+
+- USER je identifikace anotatora, ktery polozku odeslal,
+
+- TIME je nejak libovolne formatovany cas, kdy uzivatel polozku commitoval (tady jde o dve veci: jednak uzivatelske statistiky - jak je kdo rychly -, jednak odhad toho, jak rychle postupuje samotna anotace).
+
+- SKIPPED je True/False podle toho, jestli polozku preskocil nebo ne, 
+
+- APPROPRIATE je stredniky oddeleny seznam tech obrazku, ktere k dotycne polozce zaskrtl jako vhodne (zase ve forme tech relativnich cest z DATA_ROOT - k nim je mozne se chovat jako k unikatnimu ID jednotlivych obrazku)
+
+- NOT_APPROPRIATE je analogicky seznam obrazku oznacenych jako nevhodne
+
+Vystup anotace by mel lezet nekde kdekoliv, kde mas write pristup. :-) Pokud to bude primo v $DATA_ROOT, tak tim lip. (Jinak si to budu nejakym cronjobem kazdou minutu tahat, no problemo.)
+
+
+
+Data - pro predstavu velikosti
+------------------------------
+
+- 6094 obrazku, 7594 textu z datasetu SAFIRE. (Celkem je to okolo 500 MB.)
+
+- vsechny obrazky jsou *.jpg, velikost kolisa od 200x200 az po vic nez 600x400
+
+- vsechny texty jsou v UTF-8 a maji max. par set slov
+
+- muj soucasny plan pro DATA_ROOT umisten, je
+
+  /net/me/merkur2/CEMI/safire-annotations
+  
+  ale pokud Ti to nevyhovuje, napis a domluvime se jinak.
+
+
+
+Zpusob davkovani uzivatelum
+---------------------------
+
+Davkovani se obecne ridi podle PRIORITY jednotlivych polozek (nejvyssi priorita napred).
+
+Nekdy je zase potreba dat stejnou polozku vice uzivatelum, abychom meli nejaky
+odhad mezianotatorske shody. O tohle se stara system priorit: pokud rizeni vstupniho streamu anotaci usoudi, ze je potreba vic merit shodu, tak se proste objevi ve vstupnim souboru (samozrejme s jinym INDEXem) s vyssi prioritou takove polozky, ktere uz nekdy nekdo videl.  
+
+!!! ALE: abychom meli nejaky odhad toho, jak se anotatori shoduji *sami se sebou*, je potreba obcas take ukazat polozku cloveku, ktery uz ji videl. Tohle resi prave ten sloupecek PREFER_USER ve vstupnim souboru, ktery rika, jestli
+je dotycna polozka urcena pro nekoho konkretne. Pokud ano, mela by na dotycneho cloveka pockat a az se naloguje, nasypou se mu tyhle polozky, s prislusnou prioritou.
+
+
+Zpusob synchronizace cteni a zapisu
+------------------------------------
+
+Nejsem si jisty, jak nejlip udrzet anotacni pozadavky v konzistentnim stavu - aby ve vstupnim souboru zustavaly jenom ne-parsovane pozadavky. Mam dve myslenky:
+
+(1) Vzdycky, kdyz budes chtit aktualizovat frontu anotacnich polozek, zavolas napred nejaky skript (synchronize_annnotations.py), ktery se postara o aktualizaci vstupniho souboru, a pak teprve re-parsovat.
+
+(2) Pouzit na komunikaci socket.
+
+To druhe je asi cistsi reseni, ale nikdy jsem nic takovyho nedelal :) To prvni si celkem dovedu predstavit a mne by to zabralo min casu, nez se ucit sockety - ale zase je to mozna vetsi opruz na Tvoji strane.  

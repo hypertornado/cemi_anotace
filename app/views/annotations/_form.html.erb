@@ -1,0 +1,57 @@
+<%= form_for(@annotation) do |f| %>
+  <% if @annotation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@annotation.errors.count, "error") %> prohibited this annotation from being saved:</h2>
+
+      <ul>
+      <% @annotation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br>
+    <%= f.number_field :priority %>
+  </div>
+  <div class="field">
+    <%= f.label :prefer_user %><br>
+    <%= f.text_field :prefer_user %>
+  </div>
+  <div class="field">
+    <%= f.label :text_file %><br>
+    <%= f.text_field :text_file %>
+  </div>
+  <div class="field">
+    <%= f.label :image_files %><br>
+    <%= f.text_field :image_files %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :finished %><br>
+    <%= f.datetime_select :finished %>
+  </div>
+  <div class="field">
+    <%= f.label :skipped %><br>
+    <%= f.check_box :skipped %>
+  </div>
+  <div class="field">
+    <%= f.label :appropriate %><br>
+    <%= f.text_field :appropriate %>
+  </div>
+  <div class="field">
+    <%= f.label :not_appropriate %><br>
+    <%= f.text_field :not_appropriate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

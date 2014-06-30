@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @annotation.label %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @annotation.priority %>
+</p>
+
+<p>
+  <strong>Prefer user:</strong>
+  <%= @annotation.prefer_user %>
+</p>
+
+<p>
+  <strong>Text file:</strong>
+  <%= @annotation.text_file %>
+</p>
+
+<p>
+  <strong>Image files:</strong>
+  <%= @annotation.image_files %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @annotation.user_id %>
+</p>
+
+<p>
+  <strong>Finished:</strong>
+  <%= @annotation.finished %>
+</p>
+
+<p>
+  <strong>Skipped:</strong>
+  <%= @annotation.skipped %>
+</p>
+
+<p>
+  <strong>Appropriate:</strong>
+  <%= @annotation.appropriate %>
+</p>
+
+<p>
+  <strong>Not appropriate:</strong>
+  <%= @annotation.not_appropriate %>
+</p>
+
+<%= link_to 'Edit', edit_annotation_path(@annotation) %> |
+<%= link_to 'Back', annotations_path %>
