@@ -1,4 +1,4 @@
-class AnnotationsController < ApplicationController
+class AnnotationsController < AdminController
   before_action :set_annotation, only: [:show, :edit, :update, :destroy]
 
   # GET /annotations
