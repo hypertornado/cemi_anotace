@@ -6,6 +6,8 @@ $( document ).ready(function() {
 function bindEvents() {
 
   $("#save").click(save);
+  $("#save-and-quit").click(saveAndQuit);
+  $("#skip").click(skip);
   $(window).keyup(keyup);
 
   $(".annotation-pictures img").mousedown(function (event){
@@ -23,17 +25,46 @@ function bindEvents() {
 }
 
 function save() {
+  dosave(false);
+}
+
+function dosave(quit) {
   var saveOk = $(".selected-ok").map(function(){return $(this).attr("src");}).get().join(";");
   var saveFail = $(".selected-fail").map(function(){return $(this).attr("src");}).get().join(";");
-  console.log(saveFail);
+
+
+  $.ajax({
+    type: "GET",
+    url: "/save",
+    data: {id: $("body").data("id"), appropriate: saveOk, not_appropriate: saveFail},
+    success: function () {
+      if (quit == true) {
+        window.location = "/logout";
+      } else {
+        window.location.reload();
+      }
+    }
+  });
+
+}
+
+function saveAndQuit() {
+  dosave(true);
 }
 
 function skip() {
-  alert("skip");
+  $.ajax({
+    type: "GET",
+    url: "/skip",
+    data: {id: $("body").data("id")},
+    success: function () {
+      window.location.reload();
+    }
+  });
 }
 
 function keyup(event) {
-  if (event.keyCode == 13) { //enter
+  if (event.keyCode == 13 && event.ctrlKey) { //ctrl + enter
     save();
   }
 }

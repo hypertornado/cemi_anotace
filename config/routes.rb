@@ -4,6 +4,9 @@ CemiAnotace::Application.routes.draw do
   get "/login" => "main#login"
   post "/login" => "main#do_login"
   get "/logout" => "main#logout"
+  get "/skip" => "main#skip"
+  get "/save" => "main#save"
+  get "/instructions" => "main#instrukce"
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

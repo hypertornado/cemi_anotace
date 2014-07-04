@@ -62,6 +62,8 @@ zobrazených položek. :-)
 Tipy pro efektivnější anotaci
 ------------------------------
 
+Pokuste se vydržet u anotování alespoň hodinu v kuse či víc.
+
 Zobrazený text stačí velmi rychle proletět, a třeba ani ne celý. Je třeba si
 pouze udělat rychlý dojem. (Titulky někdy stačí, někdy ne; většinou je potřeba
 alespoň první odstavec nebo dva.)
@@ -75,6 +77,8 @@ obrázky do anotačních položek různými způsoby, včetně úplně náhodné
 Stejně tak Vás nemusí vůbec znepokojovat, že tam budou fotky úplně prapodivné
 a absurdní a s článkem naprosto nesouvisející - součástí vyhodnocení anotace
 je i odlišit takové fotky právě tím, že nijak označené nebudou. 
+
+(Nebuďte zbytečně pečliví.)
 
 
 Pravidla finančního ohodnocení
@@ -101,8 +105,8 @@ toto opatření má za úkol opravdu pouze odfiltrovat případné pokusy "nakli
 si" - a pokud bychom zjistili, že Vaše anotace nejsou dostatečně spolehlivé, 
 dáme Vám napřed vědět. 
 
-Nicméně: mějte na paměti, že Vaše shoda s ostatními se počítá směrem k možným
-bonusům za kvalitní práci. 
+Nicméně: mějte na paměti, že **Vaše shoda s ostatními se počítá směrem k možným
+bonusům za kvalitní práci.** 
 
 Na nejvýkonnější (spolehlivé) anotátory také čeká odměna.
 
@@ -137,29 +141,28 @@ jak si systém doopravdy vede.
 
 
 
-
-Anotacni instrukce - v bodech
+Anotační instrukce - v bodech
 =============================
 
-#. Označujete vhodné a nevhodné ilustrační fotografie pro daný článek. 
+1. Označujete vhodné a nevhodné ilustrační fotografie pro daný článek. 
 
-   #. Vhodná fotka článek dobře ilustruje, odpovídá jeho obsahu, nebudí klamný
-      dojem či očekávání.
+   * Vhodná fotka článek dobře ilustruje, odpovídá jeho obsahu, nebudí klamný
+     dojem či očekávání.
       
-   #. Nevhodná fotka čtenáře mate, poskytuje mu špatný dojem o obsahu článku,
-      neodpovídá vyznění článku.
+   * Nevhodná fotka čtenáře mate, poskytuje mu špatný dojem o obsahu článku,
+     neodpovídá vyznění článku.
       
    Není to písemka - sami nevíme, které vhodné jsou a které nejsou. (Naopak,
    vaše anotace budou něco jako oprava písemky, kterou napsal počítač.) Jediné
    kritérium "správnosti" anotace je, jak dobře se shodujete s ostatními 
    anotátory a sami se sebou.
       
-#. Vhodné položky označíte levým tlačítkem, nevhodné pravým. Okolo označené 
+2. Vhodné položky označíte levým tlačítkem, nevhodné pravým. Okolo označené 
    fotky se objeví zelený (vhodná) nebo červený (nevhodná) rámeček. Můžete se 
    opravit - označení zrušíte nebo změníte příslušným kliknutím (rámečky
    napoví).
 
-#. Neoznačujte fotky, u kterých si nejste rozumně jistí, že do jedné z těchto
+3. Neoznačujte fotky, u kterých si nejste rozumně jistí, že do jedné z těchto
    kategorií spadají (rozumná doba na "váhání" po přečtení článku jsou cca 2 - 3 
    vteřiny u každé fotky).
    
@@ -168,15 +171,16 @@ Anotacni instrukce - v bodech
    položku, pravděpodobně nad tím moc přemýšlíte (zkuste si od anotace na chvíli    
    odpočinout). 
 
-#. Jak budete s položkou hotoví, odešlete ji stisknutím klávesy Enter (nebo
+4. Jak budete s položkou hotoví, odešlete ji stisknutím klávesy Enter (nebo
    příslušného tlačítka).
 
-#. Můžete položky přeskakovat, pokud se Vám třeba z článku otvírá kudla v kapse
+5. Můžete položky přeskakovat, pokud se Vám třeba z článku otvírá kudla v kapse
    nebo tak něco: stiskněte klávesu Page Down (PgDn, většinou je buď poblíž
    klávesy Delete, nebo poblíž šipek) nebo stiskněte příslušné tlačítko 
-   rozhraní. Za přeskočené položky ovšem nejste zaplaceni.
+   rozhraní. Nedělejte to prosím moc často! Za přeskočené položky také nejste 
+   zaplaceni.
    
-#. Peníze dostanete jednak za anotacemi aktivně strávený čas, jednak za samotné
+6. Peníze dostanete jednak za anotacemi aktivně strávený čas, jednak za samotné
    výsledky (počet a kvalita odeslaných položek). Vyčerpávající popis toho, jak
    a za co budete zaplaceni, je v plném znění instrukcí.
 
