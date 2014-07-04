@@ -29,6 +29,14 @@ Nyní by měl přidaný uživatel po přihlášení na <http://localhost:3000> m
 
 Export se provede příkazem ```rake data:export```. Exportovaná data jsou vypsána na konzolu. V prípadě testování anotačního rozhraní jde použít příkaz ```rake data:delete```, který všechna anotační data vymaže.
 
+## Produkční spuštění
+V produkci by se server měl spouštět příkazem:
+```
+nohup rails server -e production &
+```
+
+Snad to bude spolehlivé. Pokud ne, dá se to obalit nějakým lepším serverem.
+
 
 
 
