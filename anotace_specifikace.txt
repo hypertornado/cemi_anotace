@@ -124,7 +124,7 @@ Vystupy
 Oanotovane polozky zapisovat zase prosim do textaku, tabulatorem oddelene
 sloupecky:
 
-INDEX   USER    TIME    SKIPPED    APPROPRIATE     NOT_APPROPRIATE
+INDEX   USER    TIME    SKIPPED    APPROPRIATE     	
              
 kde:
 
