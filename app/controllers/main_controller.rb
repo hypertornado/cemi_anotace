@@ -22,6 +22,8 @@ class MainController < ApplicationController
       gz.close
     end
 
+    @annotation_count = Annotation.where(user_id: current_user.id).count
+
     @images = @annotation.image_files.split(";")
 
     render :layout => false

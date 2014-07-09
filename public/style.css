@@ -1,19 +1,19 @@
 .annotation-pictures {
   float: right;
-  width: 70%;
+  width: 60%;
   padding: 10px;
 }
 .annotation-pictures img {
-  height: 300px;
-  margin: 0px 20px 40px 20px;
+  height: 250px;
+  margin: 2px 0px;
   border: 5px solid white;
 }
 
 .annotation-text {
-  width: 30%;
+  width: 40%;
   white-space: pre-wrap;
-  padding: 0px  30px 30px 30px;
-  font-size: 20px;
+  padding: 0px  20px 20px 20px;
+  font-size: 15px;
   border-right: 1px solid silver;
 }
 
