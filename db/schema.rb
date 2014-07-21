@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630183251) do
+ActiveRecord::Schema.define(version: 20140721172305) do
 
   create_table "annotations", force: true do |t|
     t.string   "label"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140630183251) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "just_assigned"
   end
 
 end

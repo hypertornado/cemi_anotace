@@ -24,7 +24,9 @@ class Annotation < ActiveRecord::Base
 
     Annotation.transaction do
 
-      username = User.find(userid).name
+      user = User.find(userid)
+
+      username = user.name
 
       #if already taken
       results = Annotation.where("user_id = ? and finished is null and skipped is null", userid)
@@ -37,7 +39,7 @@ class Annotation < ActiveRecord::Base
       ret = results.first if results != nil and results.size > 0
 
       #no prefered user
-      if ret == nil
+      if (ret == nil and user.just_assigned != true)
         results = Annotation.where("prefer_user = ? and user_id is null", "-").order("priority DESC")
         ret = results.first if results != nil and results.size > 0
       end
