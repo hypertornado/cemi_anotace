@@ -7,6 +7,7 @@ CemiAnotace::Application.routes.draw do
   get "/skip" => "main#skip"
   get "/save" => "main#save"
   get "/instructions" => "main#instrukce"
+  get "/mufin_images/:id" => "main#mufin"
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

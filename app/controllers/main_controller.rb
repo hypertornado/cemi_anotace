@@ -72,4 +72,8 @@ class MainController < ApplicationController
     reset_session
     redirect_to "/"
   end
+
+  def mufin
+    redirect_to "http://mufin.fi.muni.cz/profimedia/bigImages/#{params[:id]}"
+  end
 end
